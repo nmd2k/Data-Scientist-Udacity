@@ -1,9 +1,12 @@
 ## Exploring Seattle’s Airbnb Scene Through Data: What I Found About Listings, Prices, and Reviews
 
-Ever wondered what the Airbnb landscape in Seattle looks like? Well, I dove into a dataset packed with listings and reviews, crunched the numbers, and visualized the insights. Here’s what I discovered—from popular property types to the best time to visit Seattle!
+Airbnb is famous for offering travelers a unique way to experience cities like locals. But have you ever noticed how each city’s Airbnb scene reflects its own personality? Seattle is no exception! From the trendy streets of Capitol Hill to the laid-back vibe of Ballard, the Emerald City’s Airbnb listings have a lot to say about where to stay, how much it’ll cost, and what guests think.
 
-![Image](./imgs/airbnb-seattle-247025050-1200x900.jpg)
+![Image](./imgs/Airbnb_April23JPEG.jpg)
 
+In this post, I’ll dive deep into Seattle’s Airbnb data to uncover some surprising insights. Whether you’re planning a trip or just curious about what makes Seattle’s short-term rental market tick. By analyzing 3818 listings in 92 categories and 84,849 feedback from guest, hopefully this article will give you the inside scoop on prices, availability, and more. Let’s take a look at what the data has to say!
+
+🔥🔥🔥 Let’s go! 🔥🔥🔥
 
 **What Kinds of Places Can You Rent in Seattle?**
 
