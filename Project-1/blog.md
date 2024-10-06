@@ -1,12 +1,15 @@
-## Exploring Seattle’s Airbnb Scene Through Data: What We Found About Listings, Prices, and Reviews
+## Exploring Seattle’s Airbnb Scene Through Data: What I Found About Listings, Prices, and Reviews
 
-Ever wondered what the Airbnb landscape in Seattle looks like? Well, I dove into a dataset packed with listings and reviews, crunched the numbers, and visualized the insights. Here’s what we discovered—from popular property types to the best time to visit Seattle!
+Ever wondered what the Airbnb landscape in Seattle looks like? Well, I dove into a dataset packed with listings and reviews, crunched the numbers, and visualized the insights. Here’s what I discovered—from popular property types to the best time to visit Seattle!
+
+![Image](./imgs/airbnb-seattle-247025050-1200x900.jpg)
+
 
 **What Kinds of Places Can You Rent in Seattle?**
 
-Seattle’s Airbnb options are diverse, ranging from cozy rooms to entire houses. After analyzing the distribution of property types, we found that apartments dominate the market, followed by houses. It makes sense, given that Seattle’s urban core is dense with apartment complexes, but there’s still a decent chunk of larger homes available for rent.
+Seattle’s Airbnb options are diverse, ranging from cozy rooms to entire houses. After analyzing the distribution of property types, I found that apartments dominate the market, followed by houses. It makes sense because of Seattle’s urban core is dense with apartment complexes, but there’s still a decent chunk of larger homes available for rent. 🏠
 
-🧐 Apartments make up the largest portion of the listings, making them the most common option for travelers. The bar chart showed that houses were by far the most frequent type of Airbnb listing, followed by apartments.
+🧐 From the traveler data, I believe apartments is the most common option for them and thus it make up the largest portion of the listings. The bar chart below showed that apartments were by far the most frequent type of Airbnb listing, followed by houses.
 
 ![Image: Bar chart showing the distribution of property types in Seattle's Airbnb listings.](./imgs/property_type_distribution.png)
 *The distribution of property types in Seattle's Airbnb listings.*
@@ -15,10 +18,9 @@ Seattle’s Airbnb options are diverse, ranging from cozy rooms to entire houses
 
 Seattle’s neighborhoods vary in charm, from the urban cool of Capitol Hill to the waterfront beauty of Ballard. But where are most Airbnbs clustered?
 
-In our analysis, Capitol Hill took the crown as the neighborhood with the highest number of listings. This isn’t surprising—it’s close to downtown, packed with nightlife, and known for its artsy vibe.
+In my analysis, Capitol Hill took the crown as the neighborhood with the highest number of listings. This isn’t surprising—it’s close to downtown, packed with nightlife, and known for its artsy vibe.
 
 If you’re booking an Airbnb in Seattle, chances are you’ll find plenty of options in Capitol Hill, which leads in the number of listings.
-
 
 ![Image](./imgs/Top%2010%20Neighborhoods%20by%20Number%20of%20Listings.png)
 *Top 10 neightborhoods by number of listings.*
@@ -26,7 +28,7 @@ If you’re booking an Airbnb in Seattle, chances are you’ll find plenty of op
 
 **How Much Do Airbnbs in Seattle Cost?**
 
-Let’s talk money. We analyzed the price distribution across Seattle’s Airbnbs, and the results were pretty diverse. The majority of listings fall between \$75 and \$150 per night, but prices can vary dramatically, with some luxury properties going as high as \$1,000 per night.
+Let’s talk money 💰. I analyzed the price distribution across Seattle’s Airbnbs, and the results were pretty diverse. The majority of listings fall between \$75 and \$150 per night, but prices can vary dramatically, with some luxury properties going as high as \$1,000 per night.
 
 ![Image](./imgs/price_distribution.png)
 
@@ -54,7 +56,7 @@ The occupancy rate is around 33%, which means most properties are available for 
 
 **What Do Guests Think?**
 
-We also looked at reviews to get a sense of how guests feel about their stays. Review scores tend to be pretty high, with most ratings clustering around the upper end of the scale. It seems like guests are generally happy with their stays in Seattle.
+I also looked at reviews to get a sense of how guests feel about their stays. Review scores tend to be pretty high, with most ratings clustering around the upper end of the scale. It seems like guests are generally happy with their stays in Seattle.
 
 Review scores are overwhelmingly positive, with the majority of listings scoring 80 or above out of 100.
 
@@ -74,3 +76,6 @@ My conclusion: Seattle Airbnb Scene in a Nutshell 🌆
 Seattle’s Airbnb landscape is vibrant and diverse, offering something for every kind of traveler. Whether you’re looking for a budget-friendly apartment or a luxurious waterfront home, there’s no shortage of options. Most listings are located in Capitol Hill, and if you’re visiting in the summer, get ready to book early and possibly pay a premium!
 
 This was a fun deep dive into Seattle’s Airbnb market. Hopefully, it helps you make more informed decisions when planning your next trip to the Emerald City. 🏙️
+
+*Acknowledgments:*
+I’d like to thank the Airbnb team for making their data available for public use. This dataset is part of Airbnb Inside, and the original source can be found [here](http://insideairbnb.com/get-the-data.html).
