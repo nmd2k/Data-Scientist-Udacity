@@ -37,11 +37,13 @@ pip install -r requirements.txt
 Run the following commands in the project's root directory to set up your database and model.
 **1. To run ETL pipeline that cleans data and stores in database**
 ```bash
-python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db
+python process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db
+
+python process_data.py ./data/messages.csv ./data/categories.csv ./data/DisasterResponse.db
 ```
 **2. To run ML pipeline that trains classifier and saves**
 ```bash
-python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl
+python train_classifier.py data/DisasterResponse.db models/cls.pkl
 ```
 **3. To run the web app**
 ```bash
