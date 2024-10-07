@@ -49,5 +49,13 @@ python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl
 python app/run.py
 ```
 
+## Screenshots
+![Homepage](imgs/homepage.png)
+*Homepage*
+
+![Testcase](testcase.png)
+*Test on a simple usecase*
+
+
 ## Licensing, Authors, Acknowledgements
 Thanks Figure-8 for making this available to Udacity for training purposes.
