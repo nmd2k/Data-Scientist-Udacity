@@ -20,10 +20,10 @@ The dataset contains 3 files, located in the `./data` folder:
 
 I was interested in conducting exploratory data analysis using an Airbnb Seattle dataset containing listings, reviews, and calendar data to better understand:
 
--	What is the general vibe of each Seattle neighborhood based on listing descriptions?
--	When are the busiest times of the year to visit Seattle, and how much do prices increase during these periods?
--	Are there price differences across neighborhoods, and which areas tend to be more expensive?
--	How do reviews and sentiment vary across different neighborhoods and property types?
+-	What kinds of properties are most common in Seattle, and which neighborhoods have the highest concentration of listings?
+-	What is the price distribution of Airbnb listings in Seattle, and what are typical prices?
+-	How does room type affect pricing, and which room types are most common in Seattle?
+-	When is the best time to visit Seattle based on availability and review activity?
 
 I wanted the opportunity to explore the data and communicate my findings in an engaging way, providing insights into these key questions.
 
