@@ -6,3 +6,4 @@ sqlalchemy
 nltk
 scikit-learn
 Flask
+sqlalchemy
