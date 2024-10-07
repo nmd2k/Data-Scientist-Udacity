@@ -40,8 +40,9 @@ def load_data(database_filepath):
         Y: Target
         category_names: Target names
     """
-    engine = create_engine('sqlite:///data/InsertDatabaseName.db')
-    df = pd.read_sql_table('InsertTableName', engine)
+    engine = create_engine('sqlite:///{}'.format(database_filepath))
+    # Default name to EDA
+    df = pd.read_sql_table('EDA', engine)
     X = df.message
     y = df[df.columns[4:]]
     category_names = y.columns

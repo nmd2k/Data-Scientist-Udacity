@@ -52,15 +52,20 @@ def clean_data(df):
 
     # rename the columns of 'categories'
     categories.columns = category_colnames
-    categories.reset_index(drop=True)
+    # categories.reset_index(drop=True)
     
     for column in categories:
-    # set each value to be the last character of the string
+        # set each value to be the last character of the string
         categories[column] = categories[column].str[-1]
         # convert column from string to numeric
         categories[column] = pd.to_numeric(categories[column])
         
+    # Replace category value from 2 to 0
+    categories['related'] = categories['related'].replace(2, 0)
+    # print(categories.columns)
+    # print(categories['related'].unique())
     # drop the original categories column from `df`
+
     df = df.drop(['categories'], axis=1)
 
     # concatenate the original dataframe with the new `categories` dataframe
@@ -80,7 +85,7 @@ def save_data(df, database_filepath):
         None
     """
     engine = create_engine(f'sqlite:///{database_filepath}')
-    df.to_sql('InsertTableName', engine, index=False) #, if_exists='replace')  
+    df.to_sql('EDA', engine, index=False, if_exists='replace')  
 
 
 def main():
