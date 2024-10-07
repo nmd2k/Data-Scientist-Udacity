@@ -16,10 +16,9 @@ Since messages can fall into multiple categories, this is a multi-label classifi
 │   └── templates
 │       ├── go.html
 │       └── master.html
-├── classifier.pkl
+├── cls.pkl
 ├── data
 │   ├── DisasterResponse.db
-│   ├── InsertDatabaseName.db
 │   ├── Twitter-sentiment-self-drive-DFE.csv
 │   ├── categories.csv
 │   └── messages.csv
