@@ -9289,7 +9289,7 @@ The 3 most similar users to user 46 are: [4201, 23, 3782]
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [189]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_top_sorted_users</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">user_item</span><span class="o">=</span><span class="n">user_item</span><span class="p">):</span>
@@ -9352,8 +9352,8 @@ The 3 most similar users to user 46 are: [4201, 23, 3782]
 <span class="sd">    before choosing those with fewer total interactions. </span>
 <span class="sd">   </span>
 <span class="sd">    '''</span>
-    <span class="n">recs</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="c1">### Previous submission</span>
+    <span class="c1"># recs = {}</span>
     <span class="c1"># rec_names = []</span>
     <span class="c1"># neighbors_df = get_top_sorted_users(user_id)</span>
     <span class="c1"># user_articles, _ = get_user_articles(user_id)</span>
@@ -9372,27 +9372,29 @@ The 3 most similar users to user 46 are: [4201, 23, 3782]
     <span class="c1">#     rec_names.append(rec_name)</span>
 
     <span class="c1">### New submission</span>
+    <span class="n">recs</span><span class="p">,</span> <span class="n">rec_names</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+    
     <span class="n">user_articles</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_user_articles</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
     
-    <span class="n">similar_users</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-        <span class="s1">'neighbor_id'</span><span class="p">:</span> <span class="n">find_similar_users</span><span class="p">(</span><span class="n">user_id</span><span class="p">),</span>
-        <span class="s1">'weight'</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">find_similar_users</span><span class="p">(</span><span class="n">user_id</span><span class="p">)))</span>
-    <span class="p">})</span>
+    <span class="c1"># Get sorted neighbors</span>
+    <span class="n">neighbors_df</span> <span class="o">=</span> <span class="n">get_top_sorted_users</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
     
-    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">similar_users</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-        <span class="n">neighbor_articles</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_user_articles</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">'neighbor_id'</span><span class="p">])</span>
+    <span class="n">article_interactions</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'article_id'</span><span class="p">)[</span><span class="s1">'user_id'</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">neighbor_id</span> <span class="ow">in</span> <span class="n">neighbors_df</span><span class="p">[</span><span class="s1">'neighbor_id'</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">recs</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">m</span><span class="p">:</span>
+            <span class="k">break</span>
+            
+        <span class="n">neighbor_articles</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_user_articles</span><span class="p">(</span><span class="n">neighbor_id</span><span class="p">)</span>
+        <span class="n">new_recs</span> <span class="o">=</span> <span class="p">[</span><span class="n">art</span> <span class="k">for</span> <span class="n">art</span> <span class="ow">in</span> <span class="n">neighbor_articles</span> <span class="k">if</span> <span class="n">art</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">user_articles</span><span class="p">]</span>
         
-        <span class="k">for</span> <span class="n">article</span> <span class="ow">in</span> <span class="n">neighbor_articles</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">article</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">user_articles</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">article</span> <span class="ow">in</span> <span class="n">recs</span><span class="p">:</span>
-                    <span class="n">recs</span><span class="p">[</span><span class="n">article</span><span class="p">]</span> <span class="o">+=</span> <span class="n">row</span><span class="p">[</span><span class="s1">'weight'</span><span class="p">]</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">recs</span><span class="p">[</span><span class="n">article</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">'weight'</span><span class="p">]</span>
-    
-    <span class="n">sorted_recs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">recs</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    
-    <span class="n">recs</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">article</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">article</span> <span class="ow">in</span> <span class="n">sorted_recs</span><span class="p">[:</span><span class="n">m</span><span class="p">]]</span>
-    <span class="n">rec_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">article_id</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="n">article</span><span class="p">)]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">article</span> <span class="ow">in</span> <span class="n">recs</span><span class="p">]</span>
+        <span class="n">new_recs_sorted</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">new_recs</span><span class="p">,</span> 
+                               <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">article_interactions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">0</span><span class="p">),</span>
+                               <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">article</span> <span class="ow">in</span> <span class="n">new_recs_sorted</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">article</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">recs</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">recs</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">:</span>
+                <span class="n">recs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">article</span><span class="p">))</span>
+                <span class="n">rec_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">article_id</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="n">article</span><span class="p">)]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
     
     <span class="k">return</span> <span class="n">recs</span><span class="p">,</span> <span class="n">rec_names</span>
 </pre></div>
@@ -9405,7 +9407,7 @@ The 3 most similar users to user 46 are: [4201, 23, 3782]
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [190]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [192]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Quick spot check - don't change this code - just use it to test your functions</span>
@@ -9428,10 +9430,10 @@ The 3 most similar users to user 46 are: [4201, 23, 3782]
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>The top 10 recommendations for user 20 are the following article ids:
-['1330.0', '1429.0', '1364.0', '1314.0', '1271.0', '1398.0', '1431.0', '1351.0', '1160.0', '1336.0']
+['1330.0', '1427.0', '1364.0', '1170.0', '1162.0', '1304.0', '1351.0', '1160.0', '1354.0', '1368.0']
 
 The top 10 recommendations for user 20 are the following article names:
-['insights from new york car accident reports', 'use deep learning for image classification', 'predicting churn with the spss random tree algorithm', 'healthcare python streaming application demo', 'customer demographics and sales', 'total population by country', 'visualize car data with brunel', 'model bike sharing data with spss', 'analyze accident reports on amazon emr spark', 'learn basics about notebooks and apache spark']
+['insights from new york car accident reports', 'use xgboost, scikit-learn &amp; ibm watson machine learning apis', 'predicting churn with the spss random tree algorithm', 'apache spark lab, part 1: basic concepts', 'analyze energy consumption in buildings', 'gosales transactions for logistic regression model', 'model bike sharing data with spss', 'analyze accident reports on amazon emr spark', 'movie recommender system with spark machine learning', 'putting a human face on machine learning']
 </pre>
 </div>
 </div>
@@ -10689,7 +10691,7 @@ In other hand, the different between this dataset and the toy data in lession is
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [161]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># vt_test.shape</span>
@@ -10703,7 +10705,7 @@ In other hand, the different between this dataset and the toy data in lession is
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[161]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>(574, 574)</pre>
 </div>
